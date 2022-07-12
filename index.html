@@ -1,0 +1,29 @@
+<html>
+<head>
+
+</head>
+<body>
+	<form method="post" id="myform">
+		Name: <input type='text' name='name' />
+		Email: <input type='email' name='email' />
+		Comments: <input type='text' name='comments' />
+		<input type='submit' name='submit' value='Post'>
+		<div id='result'></div>
+	</form>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$('#myform').submit(function(event) {
+			event.preventDefault();
+			$.ajax({
+				type: "POST",
+				url: "post.php",
+				data: $(this).serialize(),		
+				success: function(data){
+					$('#result').html(data);
+				}					
+			});
+		});
+	</script>
+</body>
+</html>
